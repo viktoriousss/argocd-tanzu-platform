@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: emea-project
+  namespace: argocd
+spec:
+  destination:
+    name: 'sa-tanzu-platform:EMEA'
+    namespace: default
+    server: ''
+  source:
+    path: gitops/EMEA
+    repoURL: 'https://github.com/viktoriousss/argocd-tanzu-platform'
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    syncOptions:
+    - Validate=false
+    automated:
+      prune: false
+      selfHeal: false
